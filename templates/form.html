@@ -1,0 +1,181 @@
+<html>
+	<style>
+		body {
+			font-family: "Lato", sans-serif;
+			min-width: 1024px;
+		}
+		.whole{
+			max-width: 920px;
+			<!--padding: 10px 0px;-->
+			background: #f4f7f8;
+			margin: 10px;
+			padding: 20px;
+			border-radius: 8px;
+			background-color: #cccccc;
+			box-shadow: 0px 0px 2px 2px #888888;	
+		}
+		.form-group{
+			max-width: 10000px;
+			padding: 10px 10px 10px 10px;
+			font: 13px Arial, Helvetica, sans-serif;
+		}
+		.form-group-2{
+			max-width: 10000px;
+			padding: 10px 10px 10px 10px;
+			font: 13px Arial, Helvetica, sans-serif;
+		}
+		.form-group label{
+			display: inline-block;
+			width: 480px;
+			text-align: left;
+			<--margin: 10px 10px 10px 10px;-->
+		}
+		.form-group-2 label{
+			display inline-block;
+			width: 200px;
+			padding: 10px, 10px, 10px, 10px;
+			text-align: left;
+		}
+		.form-group-2 input{
+			margin-right: 92px;
+		}	
+		input{
+			width: 15%;
+		}
+	</style>
+	<body>
+		{% extends "base.html" %}
+		{% block content %}
+		<h3>Advanced Search</h3>
+		  <!--Number: <input type = "text" name = "Number"> <br>
+		  Educational Times Vol Questions: <input type = "text" name = "ETVolQ"> <br>
+		  Educational Times Date Questions: <input type = "text" name = "ETDateQ"> <br>
+		  Proposer: <input type = "text" name = "Proposer"> <br>
+		  Solvers: <input type = "text" name = "Solvers"> <br>
+		  Educational Times Vol Solvers: <input type = "text" name = "ETVolS"> <br>
+		  Educational Times Date Solvers: <input type = "text" name = "ETDateS"> <br>
+		  Mathematical Questions Vol: <input type = "text" name = "MQVol"> <br>
+		  Question Type: <input type = "text" name = "QType"> <br>-->
+		<div class="whole">
+			<fieldset>
+				<form>
+					<div class="form-group">
+									<label for="number">
+											<span>Question id:</span></label>
+											<input type="number" class="form-control:" id="id"/>
+					</div>
+					<div class="form-group">
+									<label for="etvol">
+											<span>Volume of Educational Times question appeared in:</span></label>
+											<input type="number" class="form-control:" id="etvol"/>
+											to
+											<input type="number" class="form-control:" id="etvol2"/>
+					</div>
+					<div class="form-group">
+							<p>
+									<label for="etdate"> Date that volume of Educational Times was published:</label>
+									<input type="date" class="form-control:" id="etdate" min="1830-01-01">
+									 to
+									<input type="date" class="form-control:" id="etdate2" max="1900-01-01">
+							</p>
+					</div>
+					<div class="form-group-2">
+							<p>
+									<label for="proposer"> Proposer of question:</label>
+									<input type="text" class="form-control:" id="proposer">
+									<label for="solver"> Solver of question:</label>
+									<input type="text" class="form-control:" id="solver">
+							</p>
+					</div>
+					<div class="form-group">
+							<p>
+									<label for="solvol"> Volume of Educational Times that solution appeared in:</label>
+									<input type="number" class="form-control:" id="solvol">
+									 to
+									<input type="number" class="form-control:" id="solvol2">
+							</p>
+					</div>
+					<div class="form-group">
+							<p>
+									<label for="soldate"> Date that soultion was published:</label>
+									<input type="date" class="form-control:" id="soldate" min="1830-01-01">
+									 to
+									<input type="date" class="form-control:" id="soldate2" max="1900-01-01">
+							</p>
+					</div>
+					<div class="form-group">
+							<p>
+									<label for="mqvol"> Volume of Mathematical Questions that question and answers appear in:</label>
+									<input type="number" class="form-control:" id="mqvol">
+									 to
+									<input type="number" class="form-control:" id="mqvol2">
+							</p>
+					</div>
+					<div class="form-group">
+									<label for="qtype">Question type:</label>
+									<input type="number" class="form-control:" id= "qtype">
+					</div>
+				</form>
+		  </fieldset>
+		</div>
+		
+		<button type = "submit" id="search" class="btn btn-default" onclick="advSearch()">Search</button>
+		
+		<head>
+		   <script>
+				 document.getElementById("etvol").addEventListener("keyup", function(event) {
+			   event.preventDefault();
+			   if (event.keyCode == 13) {
+				  advSearch();
+			  }
+		   });
+				 function advSearch(){
+					var etvol = document.getElementById("etvol").value
+					var etvol2 = document.getElementById("etvol2").value
+					var etdate = document.getElementById("etdate").value
+					var etdate2 = document.getElementById("etdate2").value
+					var proposer = document.getElementById("proposer").value
+					var solver = document.getElementById("solver").value
+					var solvol = document.getElementById("solvol").value
+					var solvol2 = document.getElementById("solvol2").value
+					var soldate = document.getElementById("soldate").value
+					var soldate2 = document.getElementById("soldate2").value
+					var mqvol = document.getElementById("mqvol").value
+					var mqvol2 = document.getElementById("mqvol2").value
+					var qtype = document.getElementById("qtype").value
+					var id = document.getElementById("id").value
+					if(id == "")
+						id = "zyx"
+					if(etvol == "")
+						etvol = "zyx"
+					if(etvol2 == "")
+						etvol2 = "zyx"
+					if(etdate == "")
+						etdate = "zyx"
+					if(etdate2 == "")
+						etdate2 = "zyx"
+					if(proposer == "")
+						proposer = "zyx"
+					if(solver == "")
+						solver = "zyx"
+					if(solvol == "")
+						solvol = "zyx"
+					if(solvol2 == "")
+						solvol2 = "zyx"
+					if(soldate == "")
+						soldate = "zyx"
+					if(soldate2 == "")
+						soldate2 = "zyx"
+					if(mqvol == "")
+						mqvol = "zyx"
+					if(mqvol2 == "")
+						mqvol2 = "zyx"
+					if(qtype == "")
+						qtype = "zyx"
+					window.location.assign("https://educational-times.herokuapp.com//journals/tabs/0/" + id + "/" +etvol+ "/" +etvol2+ "/" +etdate+ "/" +etdate2+ "/" +proposer+ "/" +solver+ "/" +solvol+ "/" +solvol2+"/" +soldate+"/" +soldate2+ "/" +mqvol+ "/" +mqvol2+ "/" +qtype)
+				 }
+			</script>
+		</head>
+	{% endblock %}
+	</body>
+</html>

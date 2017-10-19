@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+	<style>
+	 
+		body {
+			font-family: "Lato", sans-serif;
+			min-width: 1024px;
+		}
+		ul.tab{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			border: 1px solid #ccc;
+			background-color: #cccccc;
+			box-shadow: 0px -2px 10px #888888;
+		}
+	
+		ul.tab li {float: left;}
+		ul.tab li a {
+			display: inline-block;
+			color: black;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			transition: 0.3s;
+			font-size: 17px;
+		}
+		
+		ul.tab li a:hover {background-color: #ddd;}
+		ul.tab li a:focus, .active {background-color: #ccc;}
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+			background-color: #e6e6e6;
+			box-shadow: 0px 5px 10px #888888;
+		}
+		
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 5px;
+		}
+		
+		.tooltip{
+			position: relative;
+			display: inline-block;
+			border-bottom: 1px dotted black;
+		}
+
+		.tooltip .tooltiptext{
+			visibility: hidden;
+			width: 120px;
+			background-color: black;
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px 0;
+			position: absolute;
+			z-index: 1;
+			bottom: 100%;
+			left: 50%;
+			margin-left: -60px;
+		}
+		
+		.tooltip:hover .tooltiptext{
+			visibility: visible;
+		}
+	  
+		#downloadbtn {
+			color: blue;
+			border-radius: 12px;
+		}
+	 </style>
+	 <body>
+		
+		{% extends "base.html" %}
+		{% block content %}
+		
+		<p>Click on the links</p>
+		
+		<ul class="tab">
+			<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'First')">About</a></li>
+			<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Second')" id="defaultOpen">Search</a></li>
+			<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Third')">Contacts</a></li>
+		</ul>
+		
+		<div id="First" class="tabcontent">
+			<h3>About</h3>
+			<p>Stuff about this project.</p>
+			<p>Authors: {{ authors }}</p>
+			<p>Contributions: {{ solvers }}</p>
+		</div>
+		
+		<div id="Second" class="tabcontent">
+			<h3>Search bar</h3>
+			
+			<p>
+				<input type="search" id="mySearch" placeholder="Search">
+				<input type = "button" id="searchButton" value="Search" onclick="search()">
+				<a href="https://educational-times.herokuapp.com//journals/advanced">Advanced </a>
+			</p>
+			
+			<p>   
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/A">A </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/B">B </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/C">C </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/D">D </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/E">E </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/F">F </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/G">G </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/H">H </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/I">I </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/J">J </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/K">K </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/L">L </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/M">M </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/N">N </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/O">O </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/P">P </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/Q">Q </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/R">R </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/S">S </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/T">T </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/U">U </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/V">V </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/W">W </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/X">X </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/Y">Y </a>
+			    <a href="https://educational-times.herokuapp.com//journals/author/0/Z">Z</a>
+			</p>
+			
+			<table style = "width:100%" id = "mytab1" class="table table-striped">
+				
+				<tr>
+					<th align="right" title="Question Identifier">NUM</th>
+					<th align="right" title="Volume in Educational Times">ET VOL</th>
+					<th align="right" title="Date of Volume in Educational Times">DATE</th>
+					<th align="right" title="Proposer">PROPOSER</th>
+					<th align="right" title="Solvers">SOLVERS</th>
+					<th align="right" title="Volume in Education Times of Solution">ET VOL</th>
+					<th align="right" title="Date of Volume in Educational Times of Solution">DATE</th>
+					<th align="right" title="Volume in Mathematical Questions of  Solution">MQ VOL</th>
+					<th align="right" title="Question Type">TYPE</th>
+				</tr>
+				
+				{% for list in lists %}
+				<tr>{% for element in list %}
+					<td align="right">{{element}}</td>
+					{% endfor %}
+				</tr>
+				{% else %}
+					<p>No data was found matching those critera.</p>
+				{% endfor %}
+			</table>
+
+			<p>Authors {{ authors }}</p>
+			<p>Contributions {{ solvers }}</p>
+			
+			<u1 class="pager">
+				<li class="previous"><a onclick="past('{{ search }}','{{ bit }}', '{{ svalue  }}')">Previous</a>
+				<li class="next"><a onclick="next('{{ search }}','{{ bit }}', '{{ svalue  }}')">Next</a>
+			</u1>
+			
+			<div style="text-align: center">
+				<a class="btn btn-default" id ="downloadbtn" href="https://educational-times.herokuapp.com//journals/downloadablesw">Download Results</a>
+			</div>
+		
+		</div>
+		
+		<div id="Third" class="tabcontent">
+
+			<h3>Contacts</h3>
+			<p>Grant Brown</p>
+			<p>Logan Schmidt</p>
+
+		</div>
+
+		<head>
+			<script>
+				
+				function openTab(evt, name) {
+					var i, tabcontent, tablinks;
+
+					tabcontent = document.getElementsByClassName("tabcontent");
+					for (i = 0; i < tabcontent.length; i++) {
+						tabcontent[i].style.display = "none";
+					}
+
+					tablinks = document.getElementsByClassName("tablinks");
+					for (i = 0; i < tablinks.length; i++) {
+						tablinks[i].className = tablinks[i].className.replace("active", "");
+					}
+
+					document.getElementById(name).style.display = "block";
+					evt.currentTarget.className += "active";
+				}
+				
+				var x = 0;
+				
+				function past(p,bit,svalue){
+					if(p == '' || p == 0)
+						p=0;
+					else
+						p--;
+					if(bit==1){
+						window.location.assign("https://educational-times.herokuapp.com//journals/author/" + p + '/' + svalue )
+					}else if (bit==2){
+						window.location.assign("https://educational-times.herokuapp.com//journals/tabs/" + p + '/' + svalue)
+					}else if (bit==3){
+						window.location.assign("https://educational-times.herokuapp.com//journals/tabs/" + p + '/' + svalue)
+					}else{
+						window.location.assign("https://educational-times.herokuapp.com//journals/tabs/" + p)
+					}
+				}
+				
+				function next(p,bit,svalue){
+					if(p == '')
+						p=1;
+					else
+						p++;
+					if(bit==1){
+						window.location.assign("https://educational-times.herokuapp.com//journals/author/" + p + '/' + svalue)
+					}
+					else if (bit==2){
+						 window.location.assign("https://educational-times.herokuapp.com//journals/tabs/" + p + '/' + svalue)
+					}else if (bit==3){
+						 window.location.assign("https://educational-times.herokuapp.com//journals/tabs/" + p + '/' + svalue)
+					}else{
+						 window.location.assign("https://educational-times.herokuapp.com//journals/tabs/" + p)
+					}
+				}
+				
+				function search(){
+					var x = document.getElementById("mySearch").value;
+					if(x != '')
+						window.location.assign("https://educational-times.herokuapp.com//journals/tabs/0/" + x)
+				}
+				
+				document.getElementById("mySearch").addEventListener("keyup", function(event) {
+					event.preventDefault();
+					if (event.keyCode == 13) {
+						document.getElementById("searchButton").click();
+					}
+				});
+				
+				document.getElementById("defaultOpen").click();
+			</script>
+		</head>
+		
+		{% endblock %}
+	 </body>
+</html>
